@@ -1,0 +1,30 @@
+---
+import Layout from "../../layouts/Layout.astro";
+
+import meals from "../../config/meals.json";
+
+export async function getStaticPaths() {
+  return meals.map((meal) => {
+    return {
+      params: { id: meal.id },
+      props: meal,
+    };
+  });
+}
+
+const { title, description, image, imageAlt } = Astro.props;
+---
+
+<Layout title="Datail du plat">
+  <h1>{title}</h1>
+  <img src={image} alt={imageAlt} />
+  <p class="paragraph">{description}</p>
+</Layout>
+
+<style>
+  img {
+    max-width: 320px;
+    object-fit: cover;
+    border-radius: 1.8rem;
+  }
+</style>

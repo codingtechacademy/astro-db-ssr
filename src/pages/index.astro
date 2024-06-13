@@ -1,0 +1,16 @@
+---
+import Hero from "../components/common/Hero.astro";
+import Layout from "../layouts/Layout.astro";
+
+import MeaLList from "../components/meal/MealList.astro";
+import meals from "../config/meals.json";
+---
+
+<Layout title="Liste des plats">
+  <Hero />
+  <h2>Liste des plats</h2>
+  <p class="paragraph">
+    Retrouvez la liste de nos délicieux plats proposés par la communauté.
+  </p>
+  <MeaLList meals={meals} />
+</Layout>

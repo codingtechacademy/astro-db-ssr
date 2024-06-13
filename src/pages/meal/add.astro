@@ -1,0 +1,47 @@
+---
+import Button from "../../components/common/Button.astro";
+import Layout from "../../layouts/Layout.astro";
+---
+
+<Layout title="Proposer un plat">
+  <h1>Proposer un plat</h1>
+
+  <div class="form-control">
+    <label for="title">Titre</label>
+    <input type="text" name="title" id="title" placeholder="Ex: Tacos" />
+  </div>
+  <div class="form-control">
+    <label for="description">Description</label>
+    <textarea
+      name="description"
+      id="description"
+      placeholder="Ex: Découvrez notre taco croustillant"></textarea>
+  </div>
+  <div class="form-control">
+    <label for="image">Image</label>
+    <input type="file" name="image" id="image" />
+  </div>
+  <div class="form-control">
+    <label for="imageAlt">Description de l'image</label>
+    <input
+      type="text"
+      name="imageAlt"
+      id="imageAlt"
+      placeholder="Ex: Une image de tacos"
+    />
+  </div>
+  <section class="action">
+    <Button type="submit">Ajouter</Button>
+  </section>
+</Layout>
+
+<style>
+  form {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .action {
+    margin-top: 2rem;
+  }
+</style>
