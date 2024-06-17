@@ -3,7 +3,10 @@ import Hero from "../components/common/Hero.astro";
 import Layout from "../layouts/Layout.astro";
 
 import MeaLList from "../components/meal/MealList.astro";
-import meals from "../config/meals.json";
+
+import { db, Meal } from "astro:db";
+
+const meals = await db.select().from(Meal);
 ---
 
 <Layout title="Liste des plats">
