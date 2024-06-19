@@ -1,0 +1,15 @@
+---
+import Layout from "../layouts/Layout.astro";
+
+export const prerender = true;
+---
+
+<Layout title="Page non trouvé">
+  <h1>Page non trouvée</h1>
+  <p class="paragraph">
+    Désolé, mais cette page n'existe pas.
+    <br/><br/>
+    Vous pouvez toujours retourner à la page d'accueil, en utilisant le lien ci-dessous.
+  </p>
+  <a href="/" class="link">Retourner à la page d'accueil</a>
+</Layout>
