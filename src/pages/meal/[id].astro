@@ -3,8 +3,14 @@ import { db } from "astro:db";
 import Layout from "../../layouts/Layout.astro";
 import { Meal } from "astro:db";
 import { eq } from "astro:db";
+import Button from "../../components/common/Button.astro";
 
 const mealId = Astro.params.id;
+
+if (Astro.request.method === "POST") {
+  await db.delete(Meal).where(eq(Meal.id, +mealId!));
+  return Astro.redirect("/");
+}
 
 const [meal] = await db.select().from(Meal).where(eq(Meal.id, +mealId!));
 
@@ -22,6 +28,9 @@ const { title, description, image, imageAlt } = meal;
   <h1>{title}</h1>
   <img src={image} alt={imageAlt} />
   <p class="paragraph">{description}</p>
+  <form method="post">
+    <Button type="submit">Supprimer</Button>
+  </form>
 </Layout>
 
 <style>
