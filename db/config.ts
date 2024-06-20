@@ -9,6 +9,14 @@ const Meal = defineTable({
     image: column.text(),
     imageAlt: column.text(),
     published: column.date(),
+    authorId: column.number({ references: () => Author.columns.id }),
+  },
+});
+
+const Author = defineTable({
+  columns: {
+    id: column.number({ primaryKey: true }),
+    name: column.text(),
   },
 });
 
@@ -16,5 +24,6 @@ const Meal = defineTable({
 export default defineDb({
   tables: {
     Meal,
+    Author,
   },
 });

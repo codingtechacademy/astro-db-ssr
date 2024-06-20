@@ -20,6 +20,7 @@ if (Astro.request.method === "POST") {
     published: new Date(),
     image: `data:image/webp;base64,${imageBase64}`,
     imageAlt,
+    authorId: 1,
   });
 
   return Astro.redirect("/");

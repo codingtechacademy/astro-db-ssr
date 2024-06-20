@@ -1,7 +1,7 @@
 ---
 import { db } from "astro:db";
 import Layout from "../../layouts/Layout.astro";
-import { Meal } from "astro:db";
+import { Meal, Author } from "astro:db";
 import { eq } from "astro:db";
 import Button from "../../components/common/Button.astro";
 
@@ -12,7 +12,11 @@ if (Astro.request.method === "POST") {
   return Astro.redirect("/");
 }
 
-const [meal] = await db.select().from(Meal).where(eq(Meal.id, +mealId!));
+const [{ Meal: meal, Author: author }] = await db
+  .select()
+  .from(Meal)
+  .where(eq(Meal.id, +mealId!))
+  .innerJoin(Author, eq(Meal.authorId, Author.id));
 
 if (!meal) {
   return new Response(null, {
@@ -28,6 +32,9 @@ const { title, description, image, imageAlt } = meal;
   <h1>{title}</h1>
   <img src={image} alt={imageAlt} />
   <p class="paragraph">{description}</p>
+  <p class="paragraph">
+    Auteur : {author.name}
+  </p>
   <form method="post">
     <Button type="submit">Supprimer</Button>
   </form>
